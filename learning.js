@@ -70,9 +70,31 @@ songs[14]= "daylight";
 let size = songs.length;
 let first = songs.at(0);
 let last = songs.at(14);
+let random = songs.at(getRandomInt(15));
 
 console.log("size of array is " + size);
 console.log("first song is " + first);
 console.log("last song is " + last);
+console.log("random song is " + random);
+
+songs.push("soon you'll get better");
+
+let sort = songs.sort();
+console.log(sort);
+
 
 // https://www.w3schools.com/js/js_arrays.asp
+// https://www.w3schools.com/jsref/jsref_push.asp
+
+
+const randomIntArrayInRange = (min, max, n = 1) =>
+  Array.from(
+    { length: n },
+    () => Math.floor(Math.random() * (max - min + 1)) + min
+  );
+
+  const randomNumbers = randomIntArrayInRange(29, 87, 10);
+
+  console.log(randomNumbers);
+
+  // https://labex.io/tutorials/javascript-random-integer-array-in-range-28572
