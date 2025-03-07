@@ -94,7 +94,39 @@ const randomIntArrayInRange = (min, max, n = 1) =>
   );
 
   const randomNumbers = randomIntArrayInRange(29, 87, 10);
+  sizee = randomNumbers.length;
 
   console.log(randomNumbers);
+  let min_element = 0;
+  let max_element = 0;
+
+  function maxDiff(arr, arr_size)
+    {
+        let max_diff = arr[1] - arr[0];
+        min_element = arr[0];
+        let i;
+        for (i = 1; i < arr_size; i++) {
+            if (arr[i] - arr[i-1]> max_diff){
+              min_element = arr[i];
+              max_element = arr[i-1];
+            
+                max_diff = Math.abs(arr[i] - arr[i-1]);
+            }
+            // if (arr[i] < min_element){
+            //     min_element = arr[i];
+            //   max_element = arr[1];
+            // }
+        }
+        return max_diff;
+    }
+
+    maxDiff(randomNumbers,sizee);
+    console.log("max diff is between " + min_element + " and " + max_element + " which is " + maxDiff(randomNumbers,sizee));
 
   // https://labex.io/tutorials/javascript-random-integer-array-in-range-28572
+  // https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
+
+  const newArr = randomNumbers.map((num)=>Math.pow(num, 2));
+  console.log(newArr);
+  let max = newArr.get(max_element);
+  console.log("the new array's max is" + max);
