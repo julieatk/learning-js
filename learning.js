@@ -126,7 +126,90 @@ const randomIntArrayInRange = (min, max, n = 1) =>
   // https://labex.io/tutorials/javascript-random-integer-array-in-range-28572
   // https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
 
-  const newArr = randomNumbers.map((num)=>Math.pow(num, 2));
-  console.log(newArr);
-  let max = newArr.get(max_element);
-  console.log("the new array's max is" + max);
+  const squaredArray = randomNumbers.map((num)=>Math.pow(num, 2));
+  console.log("Squared array: ", squaredArray);
+
+const maxSquaredValue = (Math.max(...squaredArray));
+console.log("Squared array's max value is " + maxSquaredValue);
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max
+
+const halfOfBiggest = maxSquaredValue / 2;
+const filterSquaredArray = squaredArray.filter((num) => num > halfOfBiggest);
+console.log("Numbers larger than half of the biggest number:", filterSquaredArray);
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+function getSum(total, num) {
+  return total + Math.round(num);
+}
+const sumOfFilteredSquaredArray = filterSquaredArray.reduce(getSum, 0);
+console.log("sum ", sumOfFilteredSquaredArray)
+
+// https://www.w3schools.com/jsref/jsref_reduce.asp
+
+console.log("Visual representation of the array:");
+filterSquaredArray.forEach((num) => {
+  const bar = "*".repeat(Math.round(num / 100));
+  console.log(bar);
+});
+
+// https://www.geeksforgeeks.org/javascript-array-foreach-method/
+
+class Drink {
+  constructor(name, year, tasty) {
+    this.namee = name; // Use 'this' to assign to instance properties
+    this.yearr = year;
+    this.tastyy = tasty;
+  }
+
+  // Custom print function
+  print() {
+    console.log(`Name: ${this.namee}, Year: ${this.yearr}, Tasty: ${this.tastyy}`);
+  }
+}
+
+// Create an array of 10 Drink objects
+const drinks = [
+  new Drink("Boba", 1980, 90),
+  new Drink("Coffee", 1995, 85),
+  new Drink("Tea", 2000, 95),
+  new Drink("Soda", 1975, 70),
+  new Drink("Juice", 2010, 80),
+  new Drink("Smoothie", 2005, 92),
+  new Drink("Milkshake", 1985, 88),
+  new Drink("Lemonade", 1990, 75),
+  new Drink("Iced Tea", 2002, 89),
+  new Drink("Water", 2020, 100),
+];
+
+const filteredDrinks = drinks.filter((drink) => drink.namee.includes("Tea"));
+console.log("Filtered Drinks (name includes 'Tea'):");
+filteredDrinks.forEach((drink) => drink.print());
+
+const tastyScores = drinks.map((drink) => drink.tastyy);
+console.log("Tasty Scores:", tastyScores);
+
+drinks.forEach((drink) => (drink.tastyy += 5));
+console.log("Updated Drinks (tasty score increased by 5):");
+drinks.forEach((drink) => drink.print());
+
+function sortDrinks(drinksArray, order = "asc") {
+  return drinksArray.sort((a, b) => {
+    if (order === "asc") {
+      return a.tastyy - b.tastyy; 
+    } else {
+      return b.tastyy - a.tastyy; 
+    }
+  });
+}
+
+const sortedAscending = sortDrinks([...drinks], "asc");
+console.log("Sorted Drinks (Ascending Order):");
+sortedAscending.forEach((drink) => drink.print());
+
+const sortedDescending = sortDrinks([...drinks], "desc");
+console.log("Sorted Drinks (Descending Order):");
+sortedDescending.forEach((drink) => drink.print());
+
+//For theis last question i used AI because i was just really having trouble figuring it out. i asked it one by one the steps//
